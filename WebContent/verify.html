@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>Email Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>  
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+<title>Insert title here</title>
+</head>
+<style type="text/css">
+	header
+	{
+		text-align: center ;
+
+	}
+	.radio-toolbar label
+	{
+
+  		font-size: 17px;
+
+  		cursor: pointer;
+	}
+	.panel > .panel-heading
+	{
+		background-image: none;
+    	background-color: #55518a;
+    	border-color: #55518a;
+    	color: white;
+	}
+	.Identitycrisis
+	{
+		padding-right: 30%;
+	}
+	#changebtn
+	{
+		background-color: #FF900C;
+	}
+
+
+</style>
+<script>
+function fun(x)
+{
+if(document.getElementById(x).value=='email')
+{
+document.getElementById('i').value='';
+document.getElementById('m').innerHTML='Enter Email*';
+document.getElementById('i').type=document.getElementById('r1').value;
+document.getElementById('t').innerHTML='</br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm</span> </button>';
+}
+else
+{
+document.getElementById('i').value='';
+document.getElementById('m').innerHTML='Enter Customer ID*';
+document.getElementById('i').type=document.getElementById('r2').value;
+document.getElementById('t').innerHTML='</br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm</span> </button>';
+}
+}
+</script>
+<body>
+<header style="font-weight:bold;">
+   <h1 id="top"><b>Bank of CET</b><small>Cetians Trust</small></h1>
+</header>
+
+<div class="container" id="demo1" style="visibility:visible">
+<div class="tab-content">
+<div id="Verification">
+<div align="center">
+	<div class="panel panel-primary">
+ 	<div class="panel-heading">Instructions</div>
+ 	<div class="panel-body" >
+ 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> The (*) marked fields are mandatory.</div>
+ 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> Enter the email with which you want your account to be associated with or the Customer ID if any.</div>
+ 	</div>
+ 	</div>
+	
+	
+<form action="Verify" method="post">
+  <div class="panel panel-primary">
+         <div class="panel-heading">Verification Details</div>
+  <div class="panel-body" >
+  <div class="form-group">
+					<div class="radio-toolbar">
+						<div class="radio">
+						<label id="1"><input id="r1" type="radio" name="a1" value="email" required autofocus onclick="fun('r1')">Email</label>
+						<label id="2"><input id="r2" type="radio" name="a1" value="text" required onclick="fun('r2')">Customer ID</label>
+						</div>
+					</div></div>
+ <div class="row">
+				<div class="form-group">
+				<label for="a" class="control-label" id="m" ></label>
+				<input type="hidden" id="i" name="a2"  class="form-control" required>
+				<div id="t"></div>
+				</div>
+</div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+function loadDoc() {
+	document.getElementById('demo1').innerHTML=document.getElementById('demo').innerHTML;
+}
+</script>
+
+
+
+
+
+<div class="container" style="visibility:hidden" id="demo">
+<div class="tab-content">
+<div id="OTP">
+<div align="center">
+	<div class="panel panel-primary">
+ 	<div class="panel-heading">Instructions</div>
+ 	<div class="panel-body" >
+ 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> OTP send to your Email.</div>
+ 	</div>
+ 	</div>
+	
+	
+<form action="CheckOTP" method="post">
+  <div class="panel panel-primary">
+         <div class="panel-heading">Verification Details</div>
+  <div class="panel-body" >
+ <div class="row">
+				<div class="form-group">
+				<label for="a" class="control-label" >OTP*</label>
+				<input type="text" id="i" name="OTP"  class="form-control" pattern="[0-9]{6}" style="width:10%" required>
+				<br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm </span> </button>
+				</div>
+</div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
