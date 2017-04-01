@@ -904,7 +904,6 @@ function fun1(x)
 {
  if (x.files && x.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 $('#m2')
                     .attr('src', e.target.result)

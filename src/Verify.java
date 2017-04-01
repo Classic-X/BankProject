@@ -41,7 +41,7 @@ public class Verify extends HttpServlet {
 		String user="tdmosby30@gmail.com";
 		String password="Starwars";
 		String message="Your One Time Password is ";
-		int t=7;
+		int t=7; Boolean get=false;
 		Date dd=new Date();
 		SimpleDateFormat ss=new SimpleDateFormat("dd-MM-yyyy kk:mm:ss");
 		try
@@ -75,7 +75,9 @@ public class Verify extends HttpServlet {
 						{  //If an otp has been sent previously
 							String code=Verify.randomAlphaNumeric(6);
 							message=message+code;
-							SendMail.send(to,sub, message, user, password);
+							get=SendMail.send(to,sub, message, user, password);
+							if(get)
+							{
 							PreparedStatement ps4=cn.prepareStatement(updt);
 							HttpSession session=request.getSession();
 							ps4.setString(1, code);
@@ -87,13 +89,22 @@ public class Verify extends HttpServlet {
 							p.print("<html><body onload='loadDoc()'></body><html>");
 							session.setAttribute("mail", rs2.getString(7));
 							rd.include(request, response);
+							}
+							else
+							{
+								RequestDispatcher rd=request.getRequestDispatcher("verify.html");
+								rd.include(request, response);
+								p.print("Connection Timed Out");
+							}
 						}
 				}	
 				else if(rs2.getString(t).equals(to))
 				{  //If Customer have an account previously.
 					String code=Verify.randomAlphaNumeric(6);
 					message=message+code;
-					SendMail.send(to,sub, message, user, password);
+					get=SendMail.send(to,sub, message, user, password);
+					if(get)
+					{
 					PreparedStatement ps3=cn.prepareStatement(sql);
 					HttpSession session=request.getSession();
 					ps3.setString(1, to);
@@ -106,6 +117,13 @@ public class Verify extends HttpServlet {
 					p.print("<html><body onload='loadDoc()'></body><html>");
 					rd.include(request, response);
 					p.print(f+"You are registered with us wit the Customer ID : "+rs2.getString(1)+"\n We have send you an OTP for a new account");
+				    } 
+					else
+					{
+						RequestDispatcher rd=request.getRequestDispatcher("verify.html");
+						rd.include(request, response);
+						p.print("Connection Timed Out");
+					}
 				}
 			}		
 				else if(rs.next())	
@@ -114,7 +132,9 @@ public class Verify extends HttpServlet {
 						{  //If an otp has been sent previously
 							String code=Verify.randomAlphaNumeric(6);
 							message=message+code;
-							SendMail.send(to,sub, message, user, password);
+							get=SendMail.send(to,sub, message, user, password);
+							if(get)
+							{
 							HttpSession session=request.getSession();
 							PreparedStatement ps4=cn.prepareStatement(updt);
 							ps4.setString(1, code);
@@ -125,6 +145,13 @@ public class Verify extends HttpServlet {
 							session.setAttribute("mail", to);
 							p.print("<html><body onload='loadDoc()'></body></body><html>");
 							rd.include(request, response);
+							}
+							else
+							{
+								RequestDispatcher rd=request.getRequestDispatcher("verify.html");
+								rd.include(request, response);
+								p.print("Connection Timed Out");
+							}
 						}
 				}		
 			else if(rs1.next())	
@@ -146,7 +173,9 @@ public class Verify extends HttpServlet {
 				{
 				String code=Verify.randomAlphaNumeric(6);
 				message=message+code;
-				SendMail.send(to,sub, message, user, password);
+				get=SendMail.send(to,sub, message, user, password);
+				if(get)
+				{
 				HttpSession session=request.getSession();
 				PreparedStatement ps3=cn.prepareStatement(sql);
 				ps3.setString(1, to);
@@ -157,6 +186,13 @@ public class Verify extends HttpServlet {
 				session.setAttribute("mail", to);
 				p.print("<html><body onload='loadDoc()'></body><html>");
 				rd.include(request, response);
+				}
+				else
+				{
+					RequestDispatcher rd=request.getRequestDispatcher("verify.html");
+					rd.include(request, response);
+					p.print("Connection Timed Out");
+				}
 				}
 			}	
 				

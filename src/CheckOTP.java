@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +15,8 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/CheckOTP")
 public class CheckOTP extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
@@ -37,30 +38,34 @@ public class CheckOTP extends HttpServlet {
 			ps.setString(1, mail);
 			ResultSet rs=ps.executeQuery();
 			if(rs.next())
-			{  
-				if(rs.getInt(2)==Integer.parseInt(OTP))
+			{  PreparedStatement ps1=cn.prepareStatement(del);
+				Date nowdate = ss.parse(rs.getString(3)); 
+			    dNow=ss.parse(ss.format(dNow));
+	            long difference=dNow.getTime() - nowdate.getTime() ;
+				if((rs.getInt(2)==Integer.parseInt(OTP))&&(difference<300000))
 				{   
-					PreparedStatement ps1=cn.prepareStatement(del);
 					ps1.setString(1, mail);
 					ps1.executeUpdate();
-					Date nowdate = ss.parse(rs.getString(3)); 
-				    dNow=ss.parse(ss.format(dNow));
-		            long difference=dNow.getTime() - nowdate.getTime() ;
-					if(difference>60000)
-					{
-						request.getRequestDispatcher("verify.html").forward(request,response);
-						p.println("Session timed Out Request OTP again.");
-					}
-					else
-					{
 					request.getRequestDispatcher("reg.jsp").forward(request,response);
 					session.setAttribute("mail", mail);
-					}
+				}
+				else if((rs.getInt(2)!=Integer.parseInt(OTP))&&(difference<300000))
+				{
+					request.getRequestDispatcher("verify.html").include(request,response);
+					p.print("<html><body onload='loadDoc()'><h4 align=center><font color='red'>Wrong OTP! Enter the right one within 5 minutes.</font></h4></body><html>");
 				}
 				else
 				{
-					p.print("Wrong OTP Enter the right one within 10 minutes.");
+					ps1.setString(1, mail);
+					ps1.executeUpdate();
+					request.getRequestDispatcher("verify.html").include(request,response);
+					p.print("<html><body onload='loadDoc()'><h4 align=center><font color='red'>Session timed out!!! Request Another OTP </font></h4></body><html>");
 				}
+			}
+			else
+			{
+				request.getRequestDispatcher("verify.html").include(request,response);
+				p.print("<html><body><h4 align=center><font color='red'>Session timed out!!! Request Another OTP </font></h4></body><html>");
 			}
 		}
 		catch(Exception e)

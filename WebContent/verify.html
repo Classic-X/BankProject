@@ -101,65 +101,19 @@ document.getElementById('t').innerHTML='</br><button class="btn btn-success" typ
 </div>
 </div>
 </form>
-
 </div>
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
 <script>
-function loadDoc() {
-	document.getElementById('demo1').innerHTML=document.getElementById('demo').innerHTML;
+function loadDoc() 
+{
+document.getElementById('demo1').innerHTML="<div class='container'><div class='tab-content'><div id='OTP'><div align='center'>"+
+"<div class='panel panel-primary'><div class='panel-heading'>Instructions</div><div class='panel-body' ><div class='alert alert-info' align='left' style='margin-bottom: 0px;'>"+
+"<strong>Info!</strong> OTP send to your Email.</div></div></div><form action='CheckOTP' method='post'><div class='panel panel-primary'><div class='panel-heading'>Verification Details</div>"+
+"<div class='panel-body' ><div class='row'><div class='form-group'><label for='a' class='control-label' >OTP*</label><input type='text' id='i' name='OTP'  class='form-control' pattern='[0-9]{6}' style='width:10%' required>"+
+"<br><button class='btn btn-success' type='submit'> <span class='glyphicon glyphicon-ok'>Confirm </span> </button></div></div></div></div></form></div></div></div></div>";
 }
 </script>
-
-
-
-
-
-<div class="container" style="visibility:hidden" id="demo">
-<div class="tab-content">
-<div id="OTP">
-<div align="center">
-	<div class="panel panel-primary">
- 	<div class="panel-heading">Instructions</div>
- 	<div class="panel-body" >
- 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> OTP send to your Email.</div>
- 	</div>
- 	</div>
-	
-	
-<form action="CheckOTP" method="post">
-  <div class="panel panel-primary">
-         <div class="panel-heading">Verification Details</div>
-  <div class="panel-body" >
- <div class="row">
-				<div class="form-group">
-				<label for="a" class="control-label" >OTP*</label>
-				<input type="text" id="i" name="OTP"  class="form-control" pattern="[0-9]{6}" style="width:10%" required>
-				<br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm </span> </button>
-				</div>
-</div>
-</div>
-</div>
-</form>
-
-</div>
-</div>
-</div>
-</div>
-
-
-
-
-
-
 </body>
 </html>
