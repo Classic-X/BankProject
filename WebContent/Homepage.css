@@ -1,0 +1,192 @@
+  .affix {
+      top: 0;
+      width: 100%;
+      z-index: 100;
+  }
+
+  .affix + .container {
+      padding-top: 75px;
+  }
+      footer {
+      background-color: #5E3A8C;
+      color: white;
+      padding: 10px;
+      margin: 0px;
+    }
+    #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid purple;
+  border-radius: 50%;
+  border-top: 16px solid grey;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+}
+#mySidenav a {
+    position:fixed ;
+    right: -85px;
+    transition: 0.3s;
+    padding: 0px;
+    width: 115px;
+    text-decoration: none;
+    font-size: 25px;
+    border-radius: 5px 0px 0px 5px;
+	  z-index:2000;
+}
+
+#mySidenav a:hover {
+    right: 0;
+}
+#mySidenav > a
+{
+
+}
+#fb {
+    top: 430px;
+    padding-left: 2px;
+    
+}
+
+#insta {
+    top: 464px;
+    
+    padding: 0px;
+}
+
+#twitter {
+    top: 498px;
+   
+    padding: 0px;
+}
+
+
+#youtube {
+    top: 533px;
+   
+    padding: 0px;
+}
+#ldn {
+    top: 567px;
+    
+}
+#gplus {
+    top: 600px;    
+    padding: 2px;
+}
+.d{
+    background-color:white;
+    }
+    .row.content {height:auto;
+      margin-bottom: 10px} 
+    .sidenav {
+      margin-top: 0px;
+      padding-top: 0px;
+      background-color:;
+    }
+          .sidenav {
+        height: auto;
+        padding: 0px;
+      }
+
+.c
+{
+  font-size: 24px;
+  font-weight: bold;
+}
+.col-md-3
+{
+  text-align:left;
+}
+
+.ip
+{
+  text-align:center;
+}
+.mar{
+  margin: 20px 10px 20px 10px;
+}
+.e
+{
+  text-align: center;
+  padding-top: 30px;
+}
+.b
+{
+  border-radius: 12px;
+  padding: 10px;
+  background-color: purple;
+  color: white;
+  text-align: center;
+}
+.bank
+{
+  border:2px solid #52317D;
+  border-radius: 8px;
+  padding: 40px 20px; 
+}
+#myNavbar >#j >li :hover
+{
+  background-color: black;
+}
+#myNavbar >#j >li >a
+{
+  color: #ECECEC;
+}
+
+body
+{
+	background:
+radial-gradient(black 15%, transparent 16%) 0 0,
+radial-gradient(black 15%, transparent 16%) 8px 8px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+background-color:#292929;
+background-size:16px 16px;
+}
+.modal-header
+{
+	background-color: #2A9777;
+	color: #D9D9D9;
+	border-radius: 4px;
+
+}
