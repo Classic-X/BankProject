@@ -33,7 +33,7 @@ public class CheckOTP extends HttpServlet {
 		try
 		{ 
 			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","ANUJ");
+			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
 			PreparedStatement ps=cn.prepareStatement(q);
 			ps.setString(1, mail);
 			ResultSet rs=ps.executeQuery();
@@ -46,7 +46,7 @@ public class CheckOTP extends HttpServlet {
 				{   
 					ps1.setString(1, mail);
 					ps1.executeUpdate();
-					request.getRequestDispatcher("reg.jsp").forward(request,response);
+					request.getRequestDispatcher("AccountOpening.jsp").forward(request,response);
 					session.setAttribute("mail", mail);
 				}
 				else if((rs.getInt(2)!=Integer.parseInt(OTP))&&(difference<300000))

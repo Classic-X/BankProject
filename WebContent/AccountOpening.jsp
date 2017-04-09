@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<title>Create Account</title>
-<meta charset="utf-8">
+  <title>Create account</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>  
+  <!--Jasny Bootstrap-->
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
   
@@ -18,7 +19,6 @@
 session=request.getSession(false);
 String s=(String)session.getAttribute("mail");
 %>
-<body>
 <style type="text/css">
 	header
 	{
@@ -38,10 +38,13 @@ String s=(String)session.getAttribute("mail");
     	background-color: #55518a;
     	border-color: #55518a;
     	color: white;
+    	text-align: center;
 	}
-	.Identitycrisis
+	#footer
 	{
-		padding-right: 30%;
+		background-color: #55518a;
+		color:white;
+		float: right;
 	}
 	th,td
 	{
@@ -83,7 +86,8 @@ String s=(String)session.getAttribute("mail");
  	<div class="panel-heading">Instructions</div>
  	<div class="panel-body" >
  	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> The (*) marked fields are mandatory.</div>
- 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> For opening account of minors, where proof of Identity / Address is not available, the same may be provided by father or mother and Natural Guardian</div>
+ 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> <kbd>F5</kbd> button is disabled. Please use <kbd>Reset</kbd> button located at the bottom to reset the fields.</div>
+ 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> For opening account of minors, where proof of Identity / Address is not available, the same may be provided by father or mother and Natural Guardian.</div>
  	</div>
  	</div>
 
@@ -141,7 +145,7 @@ String s=(String)session.getAttribute("mail");
 				<div class="col-lg-3">
 				<div class="form-group">
     				<label for="inputEmail" class="control-label">Email *</label>
-   					<input type="text" class="form-control"  id="inputEmail" required disabled value=<%=s %>>
+   					<input type="email" class="form-control" id="inputEmail" placeholder="johhny@pizza.com" data-error="Email address is invalid" required disabled value=<%=s %>>
    					<input type="hidden" name="a6" value=<%=s %>>
    					<div class="help-block with-errors"></div>
 				</div>
@@ -336,7 +340,7 @@ String s=(String)session.getAttribute("mail");
   			<div class="row">
   			<div  align="center">  			
 			<div class="form-group">	
- 			<button class="btn btn-info prevtab"  onclick="return showNext();">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
+ 			<button class="btn btn-info prevtab"  onclick="tabv();">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
 			<button type="button" onclick="resetpg1();" class="btn btn-primary">Reset</button>
 			</div>
 			</div>
@@ -361,15 +365,15 @@ String s=(String)session.getAttribute("mail");
 		<div class="fileinput fileinput-new" data-provides="fileinput"  id="bean">
 		<span class="btn btn-info btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="a22" accept="image/*" onchange="fun(this)" id="bean"></span>
     	<a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
-		<img id="n1" height=180 width=140 style="border:1px groove ;">
-    	</div></div>
+    	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 140px; height: 180px;"></div>
+    	</div></div>    	
 
     	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong>Select a Signature with proper dimensions (200x60)    </div><br>
   		<div class="row" style="align-content:right">
 		<div class="fileinput fileinput-new" data-provides="fileinput">
     	<span class="btn btn-info btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="a23" onchange="fun1(this)" accept="image/*"></span>
     	<a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
-    	 <img id="n2" height=60 width=200 style="border:1px groove ;"></div></div>
+    	<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 60px;"></div> </div></div>
 
 	</div></div>
 
@@ -480,8 +484,8 @@ String s=(String)session.getAttribute("mail");
   			<div class="row">
   				<div  align="center">
   					<div class="form-group">
-  						<button class="btn btn-warning prevtab" type="button" onclick="return showPrev()"><span class="glyphicon glyphicon-arrow-left"></span> Previous </button>
-  						<button class="btn btn-info prevtab" type="button" onclick="return showNext()">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
+  						<button class="btn btn-info prevtab" type="button" onclick="return showPrev()"><span class="glyphicon glyphicon-arrow-left"></span> Previous </button>
+  						<button class="btn btn-info prevtab" type="button" onclick="tabv2()">Next <span class="glyphicon glyphicon-arrow-right"></span></button>
   						<button type="button" onclick="resetpg2()" class="btn btn-primary">Reset</button>
   					</div>
   				</div>
@@ -828,7 +832,7 @@ function fetchdetails() {
         var check = document.getElementById("fr" + j).checked;
         var vlu = document.getElementById("fr" + j).value;
         if (check) {
-            document.getElementById("ec" + j).innerHTML = vlu;
+            document.getElementById("ec" + j).innerHTML = check;
         } else {
             document.getElementById("ec" + j).innerHTML = "-";
         }
@@ -868,7 +872,7 @@ function resetpg2()
 document.getElementById("actype").value="";
 document.getElementById("initbal").value="";
 var proof=["identtype","Identitytxt","aftype","addresstxt"];
-    for (i = 0; i < 11; i++)
+    for (i = 0; i < 4; i++)
     {
         document.getElementById(proof[i]).value="";
     }
@@ -877,6 +881,55 @@ for (j = 1; j < 6; j++)
         document.getElementById("fr" + j).checked=false;
     }
 
+}
+//Tab1 validation
+function tabv()
+{
+	var scs=1;
+	for(i=1;i<=21;i++)
+	{
+		var vlu=document.getElementsByName("a"+i);
+		if(vlu[0].required==true)
+		{
+			if(vlu[0].value=="")
+				{scs=0;}
+		}
+	
+	}	
+	
+	if (scs==1) 
+	{
+		
+		showNext();
+	}
+	else
+	{
+		window.alert("Please check all required fields are filled.!!!")
+	}
+}
+//Tab2 validation
+function tabv2()
+{
+	var scs=1;
+	for(i=22;i<=34;i++)
+	{
+		var vlu=document.getElementsByName("a"+i);
+		if(vlu[0].required==true)
+		{
+			if(vlu[0].value=="")
+				{scs=0;}
+		}
+	
+	}	
+	
+	if (scs==1) 
+	{
+		showNext();
+	}
+	else
+	{
+		window.alert("Please check all required fields are filled.!!!")
+	}
 }
 </script>
 <!--Image Final Tab-->
@@ -887,11 +940,7 @@ function fun(x)
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#n1')
-                    .attr('src', e.target.result)
-                    .width(140)
-                    .height(180);
-				$('#m1')
+                $('#m1')
                     .attr('src', e.target.result)
                     .width(140)
                     .height(180);
@@ -904,12 +953,9 @@ function fun1(x)
 {
  if (x.files && x.files[0]) {
             var reader = new FileReader();
+
             reader.onload = function (e) {
                 $('#m2')
-                    .attr('src', e.target.result)
-                    .width(200)
-                    .height(60);
-				$('#n2')
                     .attr('src', e.target.result)
                     .width(200)
                     .height(60);
@@ -924,4 +970,14 @@ function fun1(x)
 
 </form>
 </body>
+<div id="footer" style="width: 100%; padding-top: 6PX; padding-right: 10%;font-family: Arial, Helvetica, sans-serif;" align="right" class="sansserif">
+<div><P id="time"></P></div>
+<div>
+<p>This site is best viewed in Google Chrome,Mozilla Firefox.</p></div>
+</div>
+<script>
+	document.getElementById("time").innerHTML = Date();
+</script>
+	
+
 </html>

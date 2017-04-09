@@ -26,6 +26,7 @@ public class Confirm11 extends HttpServlet {
 		Date d=new Date();
 		HttpSession session=request.getSession(false);
 		String email=(String)session.getAttribute("email");
+		session.invalidate();
 		Connection cn=null;
 		try
 		{
@@ -77,7 +78,16 @@ public class Confirm11 extends HttpServlet {
 			int a12=ps2.executeUpdate();
 			r="delete from temp_regd where mail='"+email+"';";
 			smt.executeUpdate(r);
-			if(a12>0) pw.print("Account created Successfully. Account id="+accno+". Customer id="+custid);
+			if(a12>0) 
+				{pw.print("Account created Successfully. Account id="+accno+". Customer id="+custid);
+			String message="Hello "+custid+"\nCongratulations!! Your new Account has been Created.  Happy Banking.\nYour Account no. is "+accno+".\nThank You!";
+					String subject="Bank Account Creation!";
+					String to=email;
+					SendMail.send(to,subject,message);
+
+
+
+		}
 		}
 		catch(Exception e){pw.print(e); e.printStackTrace();}
 			

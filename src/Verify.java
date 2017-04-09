@@ -38,8 +38,6 @@ public class Verify extends HttpServlet {
 		String sql="insert into temp_verify values(?,?,?)";
 		String updt="update temp_verify set code=?,date=? where mail=?";
 		String sub="CET Bank registration OTP";
-		String user="tdmosby30@gmail.com";
-		String password="Starwars";
 		String message="Your One Time Password is ";
 		int t=7; Boolean get=false;
 		Date dd=new Date();
@@ -47,7 +45,7 @@ public class Verify extends HttpServlet {
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","ANUJ");
+			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
 			if(request.getParameter("a1").equals("email"))
 			{
 			   q2+="mail=?;";
@@ -75,7 +73,7 @@ public class Verify extends HttpServlet {
 						{  //If an otp has been sent previously
 							String code=Verify.randomAlphaNumeric(6);
 							message=message+code;
-							get=SendMail.send(to,sub, message, user, password);
+							get=SendMail.send(to,sub, message);
 							if(get)
 							{
 							PreparedStatement ps4=cn.prepareStatement(updt);
@@ -102,7 +100,7 @@ public class Verify extends HttpServlet {
 				{  //If Customer have an account previously.
 					String code=Verify.randomAlphaNumeric(6);
 					message=message+code;
-					get=SendMail.send(to,sub, message, user, password);
+					get=SendMail.send(to,sub, message);
 					if(get)
 					{
 					PreparedStatement ps3=cn.prepareStatement(sql);
@@ -132,7 +130,7 @@ public class Verify extends HttpServlet {
 						{  //If an otp has been sent previously
 							String code=Verify.randomAlphaNumeric(6);
 							message=message+code;
-							get=SendMail.send(to,sub, message, user, password);
+							get=SendMail.send(to,sub, message);
 							if(get)
 							{
 							HttpSession session=request.getSession();
@@ -173,7 +171,7 @@ public class Verify extends HttpServlet {
 				{
 				String code=Verify.randomAlphaNumeric(6);
 				message=message+code;
-				get=SendMail.send(to,sub, message, user, password);
+				get=SendMail.send(to,sub, message);
 				if(get)
 				{
 				HttpSession session=request.getSession();

@@ -1,3 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@page import="java.io.*,java.sql.*,java.util.Date,java.text.*" %>
+      <%
+      response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+      response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+      response.setHeader("Expires", "0");
+      if(session.getAttribute("user")!=null)
+       {
+          session.setMaxInactiveInterval(15*60);
+       String user=(String)session.getAttribute("user");
+       String UID=(String)session.getAttribute("ID");
+      %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +26,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <script>
+    var myVar;
+    function myFunction() {
+      myVar = setTimeout(showPage, 500);
+    }
+    
+    function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myDiv").style.display = "block";
+  }
+  </script>
     <style>
     thead >tr >th {
         font-size: 20px;
@@ -199,7 +223,13 @@
 </head>
 
 <body onload="profileinfo();">
+<div id="loader"></div>
+<!--loader  -->
+
+<!--main-->
+<div style="display:none;" id="myDiv" class="animate-bottom" >
     <!--Navabar-->
+    <form method="get" action="Logout">
     <nav class="navbar navbar-inverse" style="border-radius: 0px;">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -211,12 +241,13 @@
             <div style="padding-right: 20px;">
                 <ul class="nav navbar-nav navbar-right">
                     <p class="label " style="font-size: 18px;margin: auto;">Welcome!!</p>
-                    <p class="label label-primary" style="font-size: 15px;margin: auto;background-color:#55518a;">USER</p>
+                    <p class="label label-primary" style="font-size: 15px;margin: auto;background-color:#55518a;"><%=user %></p>
                     <button class="btn btn-danger navbar-btn log2"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
                 </ul>
             </div>
         </div>
     </nav>
+    </form>
     <!--Vertical tabs-->
     <div class="container-fluid">
         <div class="row">
@@ -440,7 +471,7 @@
                             <div class=" form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon" style="color: #F2F1FF; background-color:#343434; "><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="olp" type="password" class="form-control" name="olp" placeholder="Current Password" data-error="Enter your current password" required="">
+                                        <input id="pc1" type="password" class="form-control" name="currpass" placeholder="Current Password" data-error="Enter your current password" required="">
                                     </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -448,7 +479,7 @@
                                 <div class=" form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon" style="color: #F2F1FF; background-color:#343434; "><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="c4" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" class="form-control" name="c4" placeholder="New Password" data-error="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters!!!" required="">
+                                        <input id="pc2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" class="form-control" name="newpass" placeholder="New Password" data-error="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters!!!" required="">
                                     </div>
                                     <div class="help-block with-errors">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</div>
                                 </div>
@@ -456,11 +487,13 @@
                                 <div class=" form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon" style="color: #F2F1FF; background-color:#343434; "><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="c5" type="password" data-equc="sad" class="form-control" name="c5" placeholder="Confirm Password" required="">
+                                        <input id="pc3" type="password" data-equc="sad" class="form-control" name="cnewpass" placeholder="Confirm Password" required="">
                                     </div>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <button type="submit" class="btn btn-warning">Change</button>
+                                <br>
+                                
                             </form>
                             </div>
                             </div>
@@ -582,7 +615,7 @@ $('#form3').validator().on('submit', function (e) {
         <h4 class="modal-title">Success</h4>
       </div>
       <div class="modal-body">
-        <p>Password Successfully Changed!!</p>
+        <div id="passstatus"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -613,6 +646,7 @@ $('#form3').validator().on('submit', function (e) {
                           if (e.isDefaultPrevented()) {
                           $("#passf").fadeIn(1000);
                         } else {
+                            changep();
                           $("#modal2").modal();
                        return false;
                         }                       
@@ -634,7 +668,7 @@ $('#form3').validator().on('submit', function (e) {
 <!-- Profile View-->
 function profileinfo() {
     var xhttp;
-    var cid = "1500100";
+    var cid = "<%out.print(UID);%>";
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -644,10 +678,26 @@ function profileinfo() {
     xhttp.open("POST", "Profile_bcknd/profile.jsp?cid=" + cid, true);
     xhttp.send();
 }
+<!--Change password-->
+function changep() {
+    var xhttp;
+    var cid = "<%out.print(UID);%>";
+    var cp=document.getElementById("pc1").value;
+    var cp1=document.getElementById("pc2").value;
+    var cp2=document.getElementById("pc3").value;
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            document.getElementById("passstatus").innerHTML = xhttp.responseText;
+        }
+    };
+    xhttp.open("POST", "Profile_bcknd/change_pass.jsp?cuid="+cid+"&currpass="+cp+"&cnewpass="+cp1+"&newpass="+cp2, true);
+    xhttp.send();
+}
 <!-- Account info-->
 function accountinfo() {
     var xhttp;
-    var cid = "1500100";
+    var cid = "<%out.print(UID);%>";
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -661,7 +711,7 @@ function accountinfo() {
 <!-- Passbook Account Select -->
 function selpassview() {
     var xhttp;    
-    var cid = "1500100";
+    var cid = "<%out.print(UID);%>";
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -674,7 +724,7 @@ function selpassview() {
 <!-- Transfer Account View-->
 function transacinfo() {
     var xhttp;
-    var cid = "1500100";
+    var cid = "<%out.print(UID);%>";
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -685,11 +735,12 @@ function transacinfo() {
     xhttp.send();
 }
 <!--Transfer MOney-->
-function moneytransfer() {
-	alert("bando121223");
+function moneytransfer() {	
 	document.getElementById("tsmsg").innerHTML ="";
 	document.getElementById("acc1").innerHTML ="<div></div>";
     var xhttp;
+    var cid = "<%out.print(UID);%>";
+    var p2c=document.getElementById("p2").value;
     var a1=document.getElementById("TS66").innerHTML;
     var a2=document.getElementById("TS2").innerHTML;
     var a3=Number(document.getElementById("TS4").innerHTML);
@@ -697,13 +748,12 @@ function moneytransfer() {
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-            alert("bando3B");
             document.getElementById("tsmsg").innerHTML = xhttp.responseText;
             transacinfo();
             document.getElementById("form1").reset();
         }
     };
-    xhttp.open("POST", "Profile_bcknd/trans_confirm.jsp?a1="+a1+"&a2="+a2+"&a3="+a3+"&a4="+a4, true);
+    xhttp.open("POST", "Profile_bcknd/trans_confirm.jsp?a1="+a1+"&a2="+a2+"&a3="+a3+"&a4="+a4+"&cuid="+cid+"&currpass="+p2c, true);
     xhttp.send();      
 }
 <!-- Reciever Name-->
@@ -801,6 +851,15 @@ function passbook(x) {
     }
 </script>
     <!--Scripts End-->
+    </div>
+    </div>
 </body>
 
 </html>
+<%}
+      else
+      {
+          response.sendRedirect("netbank.html");
+            out.print("Enter Login Details");
+      }
+%>

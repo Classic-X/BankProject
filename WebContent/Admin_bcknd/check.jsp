@@ -13,11 +13,16 @@ String servlet=(String)session.getAttribute("servlet");
 </head>
 <body>
 <form action="CheckServlet" method="post">
-Banker ID:<input type="text" name="id"><br>
-Banker Password:<input type="password" name="pass"><br>
+<div class="w3-row-padding">
+<div class="w3-half">
+<label for="x1">Admin ID :</label>
+<input class="w3-input w3-border" type="text" id="x1" name="id"></div>
+<div class="w3-half">
+<label for="x2">Password :</label><input class="w3-input w3-border" id="x2" type="password" name="pass"><br>
+</div>
+</div>
 <input type="hidden" value="true" name="result">
-<input type="submit" value="Submit">
+<input type="submit" class="w3-button w3-blue" value="Submit">
 </form>
-<a href='index.jsp'><input type='button' value='main page'></a>
 </body>
 </html>

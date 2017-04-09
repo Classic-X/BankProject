@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Netbanking Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="Homepage.css">
+  <script>
+  var myVar;
+  function myFunction() {
+    myVar = setTimeout(showPage, 500);
+  }
+
+  function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+  }
+  </script>
+  <link rel="stylesheet" href="hp.css">
+  <style>
+  .polaroid {
+  
+  box-shadow: 0 12px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+	.row {
+  display: flex; /* equal height of the children */
+}
+
+.col {
+  flex: 1; /* additionally, equal width */
+  
+  padding: 1em;
+  border: none;
+  text-align:center
+}
+
+
+
+ .form-wrap {
+    width: 70%;
+    margin: 0 auto;
+}
+ h2 {
+    color: #1fa67b;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+	
+}
+ .form-group {
+    margin-bottom: 25px;
+}
+ .checkbox {
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+ .checkbox.show:before {
+    content: '\e013';
+    color: #1fa67b;
+    font-size: 17px;
+    margin: 1px 0 0 3px;
+    position: absolute;
+    pointer-events: none;
+    font-family: 'Glyphicons Halflings';
+}
+ .checkbox .character-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    display: inline-block;
+}
+.checkbox .label {
+    color: #6d6d6d;
+    font-size: 13px;
+    font-weight: normal;
+}
+ .btn.btn-custom {
+    font-size: 14px;
+	margin-bottom: 20px;
+}
+.forget {
+    font-size: 13px;
+	text-align: center;
+	display: block;
+}
+
+/*    --------------------------------------------------
+	:: Inputs & Buttons
+	-------------------------------------------------- */
+.form-control {
+    color: #212121;
+}
+.btn-custom {
+    color: #fff;
+	background-color: #1fa67b;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+	background-color:#009933;
+    color: #fff;
+}
+
+.affix
+{
+z-index:100;
+width:100%;
+top:0;
+}
+.affix + .container
+{
+padding-bottom:100px;
+}
+  
+  </style>
+  
+  
+</head>
+<body onload="myFunction()">
+<!--loader  -->
+<div id="loader"></div>
+<!--loader  -->
+
+<!--main-->
+<div style="display:none;" id="myDiv" class="animate-bottom" >
+  <div class="container-fluid" style="background-color:#e6e6e6;color:black;height:70px;"><h1>Bootstrap Affix Example</h1></div>
+  <!--NavBar-->
+ <nav class="navbar navbar-inverse" style="background-color:#52317D;margin-bottom:5px;border-radius: 0px;" data-spy="affix" data-offset-top="87">
+  <div class="container">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+     </div>
+       <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id="j">
+        <li class=""><a href="Homepage.html"> <span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li class="active"><a href="#banking"> <span class="glyphicon glyphicon-piggy-bank"></span> Banking</a></li> </ul>
+       </div>
+    </div>
+    </nav>
+<!--NavBar-->
+
+<div >
+<br><br><br>
+<form id="form1" method="post">
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-4">
+            <div class="panel panel-default polaroid" style="border-radius:6px 6px 0px 0px;border-color: #57349D">
+                <div class="panel-heading" style="text-align:center;background-color:#57349D;color:white">Internet Banking - Login</div>
+                <div class="panel-body">
+                <div id="ok1"></div>
+                    <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="inputEmail3" id="ok" class="" control-label">
+                            Username</label>
+                        
+                            <input type="text" class="form-control" id="user" oninput="validateuser()" placeholder="Username" required>                      
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="pass3" class="control-label">
+                            Password</label>
+                        
+                            <input type="password" class="form-control" id="pass" placeholder="Password" required>
+                        
+                    </div>
+                   
+                    <div class="form-group last">
+                        <div class="col-sm-offset-1 col-sm-9">
+                            <button type="button" class="btn btn-success btn-sm" onclick="validate()">
+                                Sign in</button>
+                                 <button type="reset" class="btn btn-default btn-sm" >
+                                Reset</button>
+                        </div>
+                    </div>
+                    <div style="float:right; font-size: 80%;"><a href="#" class="forget" data-toggle="modal" data-target=".forget-modal"onclick="refresh()">Forgot password?</a></div>
+                    </form>
+                </div>
+                <div class="panel-footer" style="border-radius:0px 0px 10px 10px">
+                    Not Registered? <a href="NetSignup.html">Register here</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
+</div>   	
+    		
+
+<form id="form2" method="post">
+<div class="modal fade forget-modal" tabindex="-1" role="dialog" aria-labelledby="myForgetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title">Recovery password</h4>
+      </div>
+      <div class="modal-body">
+        <p align="center">Customer ID</p>
+        <input type="text" name="cid" id="cid" class="form-control" autocomplete="off" required>
+        <br>
+        <div id="success" style="text-align:center"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-custom" id="loading" onclick="sendotp()">Send Link</button>
+        
+      </div>
+    </div> <!-- /.modal-content -->
+  </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
+
+</form> 
+				
+
+				
+<script>
+function showPassword() {
+    
+    var key_attr = $('#key').attr('type');
+    
+    if(key_attr != 'text') {
+        
+        $('.checkbox').addClass('show');
+        $('#key').attr('type', 'text');
+        
+    } else {
+        
+        $('.checkbox').removeClass('show');
+        $('#key').attr('type', 'password');
+        
+    }
+    
+}
+				
+</script>
+  
+<script>
+  function sendotp() {
+    
+    document.getElementById("loading").innerHTML="Loading....  <span class='fa fa-gear fa-spin'></span>";
+        var xhttp;
+        var cd=document.getElementById("cid").value;        
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              document.getElementById("loading").innerHTML="Send Link";
+              document.getElementById("success").innerHTML=xhttp.responseText;
+       
+            }
+        };
+        xhttp.open("POST","ForgotPassword?cid="+cd, true);
+        xhttp.send();
+        
+        
+    }
+
+</script>
+<script>
+function refresh()
+{
+  document.getElementById("success").innerHTML="";
+  document.getElementById("cid").value="";
+}
+
+</script>
+<script>
+function validateuser()
+{
+  var xhttp;
+  var user=document.getElementById("user").value;
+  xhttp=new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                 document.getElementById("ok").innerHTML=xhttp.responseText;
+            }
+        };
+        xhttp.open("POST","Netbank_bcknd/LoginUser.jsp?user="+user, true);
+        xhttp.send();
+}
+</script>
+<script>
+function validate()
+{
+  
+  var xhttp;
+  var user=document.getElementById("user").value;
+  var pass=document.getElementById("pass").value;
+  xhttp=new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+              if(xhttp.responseText==1)
+                {
+                window.location.href = "Profile.jsp";
+                }
+              else if(xhttp.responseText==2)
+                {
+                document.getElementById("ok1").innerHTML="Wrong Password.";
+                }
+              else
+            {
+            document.getElementById("ok1").innerHTML="Your session in not logged out please try after 5 minutes";
+            }
+            }
+        };
+        xhttp.open("POST","Netbank_bcknd/auth.jsp?user="+user+"&pass="+pass, true);
+        xhttp.send();
+}
+</script>
+
+
+
+</div>
+
+</div>
+
+<!--main-->
+</body>
+</html>

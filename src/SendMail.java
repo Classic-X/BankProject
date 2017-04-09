@@ -3,12 +3,16 @@ import javax.mail.*;
 import javax.mail.internet.*;
 public class SendMail 
 { 
-    public static boolean send(String to, String sub, String msg, final String user,final String pass)
+    public static boolean send(String to, String sub, String msg)
     { 
+    	final String user="tdmosby30@gmail.com";
+		final String pass="Starwars";
     	Boolean b=true;  
         Properties props = new Properties();                                 
-        props.put("mail.smtp.host", "smtp.gmail.com");        
-        props.put("mail.smtp.port", "587");		
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        props.put("mail.smtp.user", user);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         Session session = Session.getInstance(props,new javax.mail.Authenticator()

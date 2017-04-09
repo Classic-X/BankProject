@@ -1,119 +1,170 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title>Email Verification</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>  
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<title>Insert title here</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Email Verification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Homepage.css">
+    <title>Insert title here</title>
+    <script>
+    var myVar;
+    function myFunction() {
+      myVar = setTimeout(showPage, 500);
+    }
+    
+    function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myDiv").style.display = "block";
+  }
+  </script>
 </head>
 <style type="text/css">
-	header
-	{
-		text-align: center ;
+header {
+    text-align: center;
+}
 
-	}
-	.radio-toolbar label
-	{
+.radio-toolbar label {
+    font-size: 17px;
+    cursor: pointer;
+}
 
-  		font-size: 17px;
+.panel > .panel-heading {
+    background-image: none;
+    background-color: #55518a;
+    border-color: #55518a;
+    color: white;
+}
 
-  		cursor: pointer;
-	}
-	.panel > .panel-heading
-	{
-		background-image: none;
-    	background-color: #55518a;
-    	border-color: #55518a;
-    	color: white;
-	}
-	.Identitycrisis
-	{
-		padding-right: 30%;
-	}
-	#changebtn
-	{
-		background-color: #FF900C;
-	}
+.Identitycrisis {
+    padding-right: 30%;
+}
 
+#changebtn {
+    background-color: #FF900C;
+}
 
+.affix {
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.affix + .container {
+    padding-top: 75px;
+}
+
+.polaroid {
+    box-shadow: 0 12px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
 </style>
 <script>
-function fun(x)
-{
-if(document.getElementById(x).value=='email')
-{
-document.getElementById('i').value='';
-document.getElementById('m').innerHTML='Enter Email*';
-document.getElementById('i').type=document.getElementById('r1').value;
-document.getElementById('t').innerHTML='</br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm</span> </button>';
-}
-else
-{
-document.getElementById('i').value='';
-document.getElementById('m').innerHTML='Enter Customer ID*';
-document.getElementById('i').type=document.getElementById('r2').value;
-document.getElementById('t').innerHTML='</br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm</span> </button>';
-}
+function fun(x) {
+    if (document.getElementById(x).value == 'email') {
+        document.getElementById('i').value = '';
+        document.getElementById('m').innerHTML = 'Enter Email*';
+        document.getElementById('i').type = document.getElementById('r1').value;
+        document.getElementById('t').innerHTML = '</br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm</span> </button>';
+    } else {
+        document.getElementById('i').value = '';
+        document.getElementById('m').innerHTML = 'Enter Customer ID*';
+        document.getElementById('i').type = document.getElementById('r2').value;
+        document.getElementById('t').innerHTML = '</br><button class="btn btn-success" type="submit"> <span class="glyphicon glyphicon-ok">Confirm</span> </button>';
+    }
 }
 </script>
-<body>
-<header style="font-weight:bold;">
-   <h1 id="top"><b>Bank of CET</b><small>Cetians Trust</small></h1>
-</header>
 
-<div class="container" id="demo1" style="visibility:visible">
-<div class="tab-content">
-<div id="Verification">
-<div align="center">
-	<div class="panel panel-primary">
- 	<div class="panel-heading">Instructions</div>
- 	<div class="panel-body" >
- 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> The (*) marked fields are mandatory.</div>
- 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> Enter the email with which you want your account to be associated with or the Customer ID if any.</div>
- 	</div>
- 	</div>
-	
-	
-<form action="Verify" method="post">
-  <div class="panel panel-primary">
-         <div class="panel-heading">Verification Details</div>
-  <div class="panel-body" >
-  <div class="form-group">
-					<div class="radio-toolbar">
-						<div class="radio">
-						<label id="1"><input id="r1" type="radio" name="a1" value="email" required autofocus onclick="fun('r1')">Email</label>
-						<label id="2"><input id="r2" type="radio" name="a1" value="text" required onclick="fun('r2')">Customer ID</label>
-						</div>
-					</div></div>
- <div class="row">
-				<div class="form-group">
-				<label for="a" class="control-label" id="m" ></label>
-				<input type="hidden" id="i" name="a2"  class="form-control" required>
-				<div id="t"></div>
-				</div>
-</div>
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-<script>
-function loadDoc() 
-{
-document.getElementById('demo1').innerHTML="<div class='container'><div class='tab-content'><div id='OTP'><div align='center'>"+
-"<div class='panel panel-primary'><div class='panel-heading'>Instructions</div><div class='panel-body' ><div class='alert alert-info' align='left' style='margin-bottom: 0px;'>"+
-"<strong>Info!</strong> OTP send to your Email.</div></div></div><form action='CheckOTP' method='post'><div class='panel panel-primary'><div class='panel-heading'>Verification Details</div>"+
-"<div class='panel-body' ><div class='row'><div class='form-group'><label for='a' class='control-label' >OTP*</label><input type='text' id='i' name='OTP'  class='form-control' pattern='[0-9]{6}' style='width:10%' required>"+
-"<br><button class='btn btn-success' type='submit'> <span class='glyphicon glyphicon-ok'>Confirm </span> </button></div></div></div></div></form></div></div></div></div>";
-}
-</script>
+<body onload="myFunction();">
+<div id="loader"></div>
+<!--loader  -->
+
+<!--main-->
+<div style="display:none;" id="myDiv" class="animate-bottom">
+    <div class="container-fluid" style="background-color:#e6e6e6;color:black;height:70px;">
+        <h1>Bootstrap Affix Example</h1></div>
+    <!--NavBar-->
+    <nav class="navbar navbar-inverse" style="background-color:#52317D;margin-bottom:5px;border-radius: 0px;" data-spy="affix" data-offset-top="87">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav" id="j">
+                    <li class="active">
+                        <a href="Homepage.html"> <span class="glyphicon glyphicon-home"></span> Home</a>
+                    </li>
+                    <li class="scroll">
+                        <a href="netbank.html"> <span class="glyphicon glyphicon-piggy-bank"></span> Banking</a>
+                    </li>                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container" style="width: 50%" id="demo1" style="visibility:visible" align="center">
+        <div class="tab-content">
+            <div id="Verification">
+                <div align="center" class="polaroid">
+                    <div class="panel panel-primary" class="polaroid">
+                        <div class="panel-heading">Instructions</div>
+                        <div class="panel-body">
+                            <div class="alert alert-info" align="left" style="padding:5px;margin-bottom: 0px;"><strong style="color: black">Info!</strong> The (*) marked fields are mandatory.</div>
+                            <div class="alert alert-info" align="left" style="padding:5px;margin-bottom: 0px;"><strong style="color: black">Info!</strong> Enter the email with which you want your account to be associated with or the Customer ID if any.</div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center" class="polaroid">
+                    <form action="Verify" method="post">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Verification Details</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="radio-toolbar">
+                                        <div class="radio">
+                                            <label id="1">
+                                                <input id="r1" type="radio" name="a1" value="email" required autofocus onclick="fun('r1')">Email</label>
+                                            <label id="2">
+                                                <input id="r2" type="radio" name="a1" value="text" required onclick="fun('r2')">Customer ID</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="">
+                                    <label for="a" class="control-label" id="m" style="font-weight: bold;"></label>
+                                    <div class="form-group" style="width:30%;align:center;margin-left: 35%;">
+                                        <input type="hidden" id="i" name="a2" class="form-control" required>
+                                        <div id="t"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    function loadDoc() {
+        document.getElementById('demo1').innerHTML = "<div class='container' style='width: 60%' align=''center' class='polaroid'><div class='tab-content'><div id='OTP'><div align='center'>" +
+            "<div class='panel panel-primary'><div class='panel-heading'>Instructions</div><div class='panel-body' ><div class='alert alert-info' align='left' style='margin-bottom: 0px;'>" +
+            "<strong>Info!</strong> OTP send to your Email.</div></div></div><form action='CheckOTP' method='post'><div class='panel panel-primary'><div class='panel-heading'>Verification Details</div>" +
+            "<div class='panel-body' ><div class='row'><div class='form-group'><label for='a' class='control-label' >OTP*</label><input type='text' id='i' name='OTP'  class='form-control' pattern='[0-9]{6}' style='width:20%' required>" +
+            "<br><button class='btn btn-success' type='submit'> <span class='glyphicon glyphicon-ok'>Confirm </span> </button></div></div></div></div></form></div></div></div></div>";
+    }
+    </script>
+    </div>
+    </div>
 </body>
+
 </html>

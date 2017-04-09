@@ -25,8 +25,29 @@ public class CheckServlet extends HttpServlet {
 		PrintWriter pw=response.getWriter();
 		if(val.equals("dashboard"))
 		{
-			RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-			   rd.forward(request, response); 
+			Connection cn=null;
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");	
+			String p="select * from admin where id='"+id+"';";
+			Statement smt=cn.createStatement();
+			ResultSet rs=smt.executeQuery(p);
+			String password="";
+			while(rs.next()){password=rs.getString(2);}
+		    if(password.equals(pass))
+		    {
+			   RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.html");
+			   rd.include(request, response);   
+		    }
+		    else
+		    {
+		    	RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.html");			   
+		    	pw.println("WRONG ADMIN ID OR PASSWORD");
+		    	rd.include(request, response); 
+		    }
+		}
+		catch(Exception e){pw.print(e);}
 		}
 		else
 		{
@@ -46,12 +67,13 @@ public class CheckServlet extends HttpServlet {
 		    if(password.equals(pass))
 		    {
 			   RequestDispatcher rd=request.getRequestDispatcher(servlet);
-			   rd.forward(request, response);   
-		    	pw.print("successful Login");
+			   rd.include(request, response);   
 		    }
 		    else
 		    {
+		    	RequestDispatcher rd=request.getRequestDispatcher(servlet);			   
 		    	pw.println("WRONG ADMIN ID OR PASSWORD");
+		    	rd.include(request, response);
 		    }
 	  }
 		catch(Exception e){pw.print(e);}

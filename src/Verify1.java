@@ -35,14 +35,14 @@ public class Verify1 extends HttpServlet {
 			int c=0; while(rs.next()){c++;}
 		    if(c==0)
 		    { 
-		    	session.setAttribute("servlet", "Confirm1");
-		    	RequestDispatcher rd=request.getRequestDispatcher("check.jsp");
+		    	session.setAttribute("servlet", "Confirm2");
+		    	RequestDispatcher rd=request.getRequestDispatcher("Admin_bcknd/check.jsp");
 		    	rd.forward(request, response);
 		    }
 		    else
 		    {
 		    	session.setAttribute("servlet", "Confirm11");
-		    	RequestDispatcher rd=request.getRequestDispatcher("check.jsp");
+		    	RequestDispatcher rd=request.getRequestDispatcher("Admin_bcknd/check.jsp");
 		    	rd.forward(request, response);
 		    }
 		}

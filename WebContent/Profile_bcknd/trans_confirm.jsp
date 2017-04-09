@@ -1,10 +1,23 @@
-<%@ page import="java.io.*,java.sql.*,java.util.Date,java.text.*" %>
+<%@ page import="java.io.*,java.sql.*,java.util.Date,java.text.*,p.*" %>
 
 <%
 try
 {	
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+
+	 String s23="select password from netbanking_active where customer_id=?";
+	 PreparedStatement ps23=cn.prepareStatement(s23);
+	 String currpass=request.getParameter("currpass");
+	 String cid=request.getParameter("cuid");
+	 ps23.setString(1,cid);
+	 String message="";
+	 ResultSet rs23=ps23.executeQuery();
+	 if(rs23.next())
+	   { String cpass=rs23.getString("password");
+	      if(BCrypt.checkpw(currpass,cpass))
+	      {
+	
 	String tra_det[]=new String[7];
 	SimpleDateFormat ss=new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 	for(int i =0;i<4;i++)
@@ -12,7 +25,7 @@ try
 		tra_det[i]=request.getParameter("a"+Integer.toString(i+1));
 	}
 	double amt=Double.parseDouble(tra_det[2]);
-	String message="Transaction Successfull.";
+	message="Transaction Successfull.";
 	String q2="insert into transaction values (?,?,?,?,?,?,?)";
 	String a1="select balance from client_account_details where accno='"+tra_det[0]+"'";
 	String a2="select balance from client_account_details where accno='"+tra_det[1]+"'";
@@ -67,8 +80,13 @@ try
 		message="Receiver And Sender Account are Same";
 	}
 
+	}
+	else
+	message="Invalid Credentials!!";
 	%><p><%=message %></p>
 	<%
+
+}
 }
 catch(Exception e)
 {

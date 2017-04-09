@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -35,11 +34,12 @@ public class Verify2 extends HttpServlet {
 			if(c==0)
 			{
 				pw.print("The Account Doesn't Exist");
+				session.invalidate();
 			}
 			else
 			{
 				session.setAttribute("servlet", "Delete");
-		    	RequestDispatcher rd=request.getRequestDispatcher("check.jsp");
+		    	RequestDispatcher rd=request.getRequestDispatcher("Admin_bcknd/check.jsp");
 		    	rd.forward(request, response);
 			}
 		}
