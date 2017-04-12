@@ -84,7 +84,7 @@ public class Verify extends HttpServlet {
 							ps4.executeUpdate();
 							f=1;
 							RequestDispatcher rd=request.getRequestDispatcher("verify.html");
-							p.print("<html><body onload='loadDoc()'></body><html>");
+							p.print("<html><body onload='myFunction();loadDoc();'></body><html>");
 							session.setAttribute("mail", rs2.getString(7));
 							rd.include(request, response);
 							}

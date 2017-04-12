@@ -29,7 +29,7 @@ try
 	}
 	%>
 		<div style="padding: 20px;">
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <tr style="color: white;background-color: #5A55A3">
                     <th colspan="4"> <span class="glyphicon glyphicon-user"></span> Customer ID : <%= rs.getString(1) %></th>                    

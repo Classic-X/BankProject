@@ -222,7 +222,7 @@
     </style>
 </head>
 
-<body onload="profileinfo();">
+<body onload="myFunction();profileinfo();">
 <div id="loader"></div>
 <!--loader  -->
 
@@ -615,7 +615,7 @@ $('#form3').validator().on('submit', function (e) {
         <h4 class="modal-title">Success</h4>
       </div>
       <div class="modal-body">
-        <div id="passstatus"></div>
+        <div id="passstatus"><h4>Loading...</h4><i class="fa fa-cog fa-spin" style="font-size:48px;color:blue"></i></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
