@@ -4,8 +4,8 @@
 <%
 try
 {
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+	DAO d=new DAO();
+	Connection cn=d.getConnection();
 	String user=request.getParameter("user");
 	String pass=request.getParameter("pass");
 	String val="select password,status,date,customer_id from netbanking_active where username='"+user+"';"; 

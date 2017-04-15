@@ -7,7 +7,6 @@
       response.setHeader("Expires", "0");
       if(session.getAttribute("user")!=null)
        {
-          session.setMaxInactiveInterval(15*60);
        String user=(String)session.getAttribute("user");
        String UID=(String)session.getAttribute("ID");
       %>
@@ -222,7 +221,7 @@
     </style>
 </head>
 
-<body onload="myFunction();profileinfo();">
+<body onload="profileinfo();">
 <div id="loader"></div>
 <!--loader  -->
 
@@ -236,8 +235,7 @@
                 <a class="navbar-brand" href="#">WebSiteName</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class=""><a href="Homepage.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>                    
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>                
             </ul>
             <div style="padding-right: 20px;">
                 <ul class="nav navbar-nav navbar-right">
@@ -616,7 +614,7 @@ $('#form3').validator().on('submit', function (e) {
         <h4 class="modal-title">Success</h4>
       </div>
       <div class="modal-body">
-        <div id="passstatus"><h4>Loading...</h4><i class="fa fa-cog fa-spin" style="font-size:48px;color:blue"></i></div>
+        <div id="passstatus"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -695,7 +693,6 @@ function changep() {
     xhttp.open("POST", "Profile_bcknd/change_pass.jsp?cuid="+cid+"&currpass="+cp+"&cnewpass="+cp1+"&newpass="+cp2, true);
     xhttp.send();
 }
-<!-- Account info-->
 function accountinfo() {
     var xhttp;
     var cid = "<%out.print(UID);%>";
@@ -709,7 +706,6 @@ function accountinfo() {
     xhttp.open("POST", "Profile_bcknd/acc_info1.jsp?cid=" + cid, true);
     xhttp.send();
 }
-<!-- Passbook Account Select -->
 function selpassview() {
     var xhttp;    
     var cid = "<%out.print(UID);%>";
@@ -722,7 +718,6 @@ function selpassview() {
     xhttp.open("POST", "Profile_bcknd/pass_acc_select.jsp?cid=" + cid, true);
     xhttp.send();
 }
-<!-- Transfer Account View-->
 function transacinfo() {
     var xhttp;
     var cid = "<%out.print(UID);%>";
@@ -735,7 +730,6 @@ function transacinfo() {
     xhttp.open("POST", "Profile_bcknd/trans_acc.jsp?cid=" + cid, true);
     xhttp.send();
 }
-<!--Transfer MOney-->
 function moneytransfer() {	
 	document.getElementById("tsmsg").innerHTML ="";
 	document.getElementById("acc1").innerHTML ="<div></div>";
@@ -757,7 +751,6 @@ function moneytransfer() {
     xhttp.open("POST", "Profile_bcknd/trans_confirm.jsp?a1="+a1+"&a2="+a2+"&a3="+a3+"&a4="+a4+"&cuid="+cid+"&currpass="+p2c, true);
     xhttp.send();      
 }
-<!-- Reciever Name-->
 function recname() {
     var xhttp;
       
@@ -776,7 +769,6 @@ function recname() {
     xhttp.send();
 }
 
-<!-- Passbook View-->
 function passbook(x) {
         var xhttp;
         document.getElementById("passbook").innerHTML="";

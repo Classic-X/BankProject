@@ -3,8 +3,9 @@
 
 <%@ page import="java.sql.*,java.io.*,p.*,java.util.Date,java.text.*" %>
 
-<% Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+<% 
+DAO d=new DAO();
+Connection cn=d.getConnection();
 Date dNow=new Date();
 SimpleDateFormat ss=new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
 String s=ss.format(dNow);

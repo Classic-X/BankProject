@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import p.DAO;
+
 @WebServlet("/Confirm2")
 public class Confirm1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,12 +32,12 @@ public class Confirm1 extends HttpServlet {
 		Date d=new Date();
 		HttpSession session=request.getSession(false);
 		String email=(String)session.getAttribute("email");
-		session.invalidate();
+		session.removeAttribute("email");
 		Connection cn=null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+			DAO d1=new DAO();
+			cn=d1.getConnection();
 		
 			String r="select * from temp_regd where mail='"+email+"';";
 			Statement smt=cn.createStatement();
@@ -116,11 +118,13 @@ public class Confirm1 extends HttpServlet {
 			smt.executeUpdate(r);
 			if(a11>0 && a12>0) 
 				{
-					pw.print("Account created Successfully. Account id="+accno+". Customer id="+custid);
+					String m="Account created Successfully. Account id="+accno+". Customer id="+custid;
+					request.setAttribute("message", m);
 					String message="Congratulations!! Your Account has been Created. Welcome to our Family. Happy Banking.\n Your Customer id is "+custid+" and your Account no. is "+accno+".\nThank You!";
 					String subject="Bank Account Creation!";
 					String to=email;
 					SendMail.send(to,subject,message);
+					request.getRequestDispatcher("AdminDashboard.jsp");
 		        }
 		    }
 		catch(Exception e){pw.print(e); e.printStackTrace();}

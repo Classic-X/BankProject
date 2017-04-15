@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import p.DAO;
 @WebServlet("/SMailOTP")
 public class SMailOTP extends HttpServlet {
 	/**
@@ -44,8 +46,8 @@ public class SMailOTP extends HttpServlet {
 		{
 			String code=randomAlphaNumeric(6);
 			message=message+code;
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank?useSSL=false","root","petervsock");
+			DAO d=new DAO();
+		    cn=d.getConnection();
 				PreparedStatement as=cn.prepareStatement(sql);
 				SendMail.send(to,sub,message);
 				as.setString(1,to);

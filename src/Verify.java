@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import p.DAO;
 @WebServlet("/Verify")
 public class Verify extends HttpServlet {
 	private static final String ALPHA_NUMERIC_STRING = "0123456789";
@@ -44,8 +46,8 @@ public class Verify extends HttpServlet {
 		SimpleDateFormat ss=new SimpleDateFormat("dd-MM-yyyy kk:mm:ss");
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+			DAO d=new DAO();
+			cn=d.getConnection();
 			if(request.getParameter("a1").equals("email"))
 			{
 			   q2+="mail=?;";
@@ -84,7 +86,7 @@ public class Verify extends HttpServlet {
 							ps4.executeUpdate();
 							f=1;
 							RequestDispatcher rd=request.getRequestDispatcher("verify.html");
-							p.print("<html><body onload='myFunction();loadDoc();'></body><html>");
+							p.print("<html><body onload='loadDoc()'></body><html>");
 							session.setAttribute("mail", rs2.getString(7));
 							rd.include(request, response);
 							}

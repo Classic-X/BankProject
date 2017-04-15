@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import p.DAO;
+
 @WebServlet("/CheckOTP")
 public class CheckOTP extends HttpServlet {
 
@@ -32,8 +34,8 @@ public class CheckOTP extends HttpServlet {
 		
 		try
 		{ 
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+			DAO d=new DAO();
+			cn=d.getConnection();			
 			PreparedStatement ps=cn.prepareStatement(q);
 			ps.setString(1, mail);
 			ResultSet rs=ps.executeQuery();

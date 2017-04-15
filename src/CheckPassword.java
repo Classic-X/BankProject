@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import p.DAO;
+
 /**
  * Servlet implementation class ResetPassword
  */
@@ -34,9 +36,8 @@ public class CheckPassword extends HttpServlet {
 		response.setContentType("text/html");
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con;
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+			DAO d=new DAO();
+			Connection con=d.getConnection();
 			
 			Statement stmt1 = con.createStatement();
 			ResultSet rs = stmt1.executeQuery("select * from forgot_password where token='"+query+"'");

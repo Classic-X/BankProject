@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%><%@page import="java.io.*,java.sql.*,java.text.*" %>
+    pageEncoding="ISO-8859-1"%><%@page import="java.io.*,java.sql.*,java.text.*,p.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,8 +9,8 @@
 <body>
 <%try
 {
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+	DAO d1=new DAO();
+	Connection cn=d1.getConnection();
 	String accno=request.getParameter("accno");
 	int d=Integer.parseInt(request.getParameter("d"));
 	String dd[]=new String[4];

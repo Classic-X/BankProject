@@ -1,16 +1,7 @@
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,9 +24,8 @@ public class ResetPassword extends HttpServlet {
 		
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con;
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+			DAO d=new DAO();
+			Connection con=d.getConnection();
 			
 			pw.println(mail);
 			String sql3="update netbanking_active set password=? where email=?";

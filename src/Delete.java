@@ -1,19 +1,18 @@
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import p.DAO;
 
 
 @WebServlet("/Delete")
@@ -22,15 +21,14 @@ public class Delete extends HttpServlet {
 		PrintWriter pw=response.getWriter();
 		HttpSession session=request.getSession(false);
 		String accno=(String)session.getAttribute("accno");
-		session.invalidate();
+		session.removeAttribute("accno");
 		response.setContentType("text/html");
 		pw.print("<html><head><title>Create an Account</title></head><body>");  
 		Connection cn=null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
-		
+			DAO d=new DAO();
+			cn=d.getConnection();
 			String r="select * from client_account_details where accno='"+accno+"';";
 			String custid="";
 			float bal=0;
@@ -56,17 +54,20 @@ public class Delete extends HttpServlet {
 			}
 			if(a1>0)
 			{
-				pw.print("Account with Account Number "+accno+" deleted Successfully");
+				String m="Account with Account Number "+accno+" deleted Successfully";
 				pw.print("<br><form action='cheque' method='post'><input type='hidden' value='"+bal+"' name='balance'><input type='submit' value='Print Balance Cheque'></form>");
 				String message="Your Account with Account no. "+accno+" has been deleted.";
 				if(c==0) message+="\nIt was nice having you as our Customer. You had been a valuable Customer. We will be happy to provide you our services in near future.";
 				message+="Thank You!";
-					String subject="Bank Account Deletion!";
-					String to=email;
-					SendMail.send(to,subject,message);
+				String subject="Bank Account Deletion!";
+				String to=email;
+				//SendMail.send(to,subject,message);
+				RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.jsp");
+				request.setAttribute("message", m);
+				rd.forward(request, response);
 			}
 		}
-			catch(Exception e){pw.print(e); e.printStackTrace();}
+		catch(Exception e){pw.print(e); e.printStackTrace();}
 		pw.print("</body></html>");
 		
 	}

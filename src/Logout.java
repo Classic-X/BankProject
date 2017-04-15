@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;  
 import javax.servlet.http.HttpSession;
+
+import p.DAO;
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {  
         protected void doGet(HttpServletRequest request, HttpServletResponse response)  
                                 throws ServletException, IOException { 
         	try{
-        	Class.forName("com.mysql.jdbc.Driver");
-        	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+        		DAO d=new DAO();
+        		Connection cn=d.getConnection();
         	Date dNow=new Date();
         	SimpleDateFormat ss=new SimpleDateFormat("dd-MM-yyyy kk:mm:ss");
         	String s=(ss.format(dNow));

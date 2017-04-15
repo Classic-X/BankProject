@@ -32,6 +32,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.mysql.jdbc.PreparedStatement;
 
+import p.DAO;
+
 /**
  * Servlet implementation class GenPDF
  */
@@ -244,9 +246,8 @@ public class GenPDF  {
 			
 			//Image
 			new File("\\Test").mkdir();//Making Test Directory
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
-		
+			DAO d=new DAO();
+			Connection con=d.getConnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from temp_regd where mail='"+details[5]+"'");
 			

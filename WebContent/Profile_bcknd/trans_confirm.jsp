@@ -3,9 +3,8 @@
 <%
 try
 {	
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
-
+	DAO d=new DAO();
+	Connection cn=d.getConnection();
 	 String s23="select password from netbanking_active where customer_id=?";
 	 PreparedStatement ps23=cn.prepareStatement(s23);
 	 String currpass=request.getParameter("currpass");

@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import p.DAO;
+
 
 @WebServlet("/Confirm11")
 public class Confirm11 extends HttpServlet {
@@ -26,13 +28,12 @@ public class Confirm11 extends HttpServlet {
 		Date d=new Date();
 		HttpSession session=request.getSession(false);
 		String email=(String)session.getAttribute("email");
-		session.invalidate();
+		session.removeAttribute("email");
 		Connection cn=null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
-		
+			DAO d1=new DAO();
+			cn=d1.getConnection();
 			String r="select * from temp_regd where mail='"+email+"';";
 			Statement smt=cn.createStatement();
 			ResultSet rs=smt.executeQuery(r);

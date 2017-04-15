@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import p.DAO;
+
 @WebServlet("/CheckServlet")
 public class CheckServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,23 +30,24 @@ public class CheckServlet extends HttpServlet {
 			Connection cn=null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");	
+			DAO d=new DAO();
+			cn=d.getConnection();	
 			String p="select * from admin where id='"+id+"';";
 			Statement smt=cn.createStatement();
 			ResultSet rs=smt.executeQuery(p);
 			String password="";
 			while(rs.next()){password=rs.getString(2);}
 		    if(password.equals(pass))
-		    {
-			   RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.html");
+		    {  HttpSession session=request.getSession();
+			   RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.jsp");
+			   session.setAttribute("admin", id);
 			   rd.include(request, response);   
 		    }
 		    else
 		    {
-		    	RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.html");			   
-		    	pw.println("WRONG ADMIN ID OR PASSWORD");
-		    	rd.include(request, response); 
+		    	request.setAttribute("message","Wrong id or password.");
+		    	RequestDispatcher rd=request.getRequestDispatcher("Homepage.html");			   
+		    	rd.forward(request, response); 
 		    }
 		}
 		catch(Exception e){pw.print(e);}
@@ -57,8 +60,8 @@ public class CheckServlet extends HttpServlet {
 		Connection cn=null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");	
+			DAO d=new DAO();
+			cn=d.getConnection();
 			String p="select * from admin where id='"+id+"';";
 			Statement smt=cn.createStatement();
 			ResultSet rs=smt.executeQuery(p);
@@ -71,9 +74,9 @@ public class CheckServlet extends HttpServlet {
 		    }
 		    else
 		    {
-		    	RequestDispatcher rd=request.getRequestDispatcher(servlet);			   
-		    	pw.println("WRONG ADMIN ID OR PASSWORD");
-		    	rd.include(request, response);
+		    	RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.jsp");			   
+		    	request.setAttribute("message", "WRONG ADMIN ID OR PASSWORD");
+		    	rd.forward(request, response);
 		    }
 	  }
 		catch(Exception e){pw.print(e);}

@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import p.DAO;
+
 @WebServlet("/Verify1")
 public class Verify1 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,8 +29,8 @@ public class Verify1 extends HttpServlet {
 		Connection cn=null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");	
+			DAO d=new DAO();
+			cn=d.getConnection();	
 			String p="select * from client_personal_details where mail='"+email+"';";
 			Statement smt=cn.createStatement();
 			ResultSet rs=smt.executeQuery(p); 

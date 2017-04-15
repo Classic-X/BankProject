@@ -5,8 +5,8 @@
 <%
     PrintWriter pw=response.getWriter();
     try{
-	 Class.forName("com.mysql.jdbc.Driver");
-	 Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+    	DAO d=new DAO();
+    	Connection cn=d.getConnection();
 	 String s2="select password from netbanking_active where customer_id=?";
 	 PreparedStatement ps2=cn.prepareStatement(s2);
 	 String currpass=request.getParameter("currpass");

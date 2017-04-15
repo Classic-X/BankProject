@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import p.DAO;
+
 /**
  * Servlet implementation class ForgotPassword
  */
@@ -47,9 +49,8 @@ public class ForgotPassword extends HttpServlet {
 		response.setContentType("text/html");
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con;
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+			DAO d=new DAO();
+			Connection con=d.getConnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select mail from client_personal_details where customer_id='"+cid+"'");
 			if(rs.next()){//now on 1st row  

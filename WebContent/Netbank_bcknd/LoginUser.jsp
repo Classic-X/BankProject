@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.io.*,java.sql.*,java.util.Date,java.text.*" %>
+    <%@page import="java.io.*,java.sql.*,java.util.Date,java.text.*,p.*" %>
 <%
 try
 {
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+	DAO d=new DAO();
+	Connection cn=d.getConnection();
 	String user=request.getParameter("user");
 	String val="select username from netbanking_active where username='"+user+"';";
 	Statement sm=cn.createStatement();

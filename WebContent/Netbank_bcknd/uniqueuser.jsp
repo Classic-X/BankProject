@@ -1,6 +1,7 @@
-<%@ page import="java.sql.*,java.io.*" %>
-<% Class.forName("com.mysql.jdbc.Driver");
-Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+<%@ page import="java.sql.*,java.io.*,p.*" %>
+<% 
+DAO d=new DAO();
+Connection cn=d.getConnection();
 
 String qr="select customer_id from netbanking_active";
 

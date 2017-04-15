@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.io.*,java.sql.*" %>
+    <%@page import="java.io.*,java.sql.*,p.DAO" %>
     <%try
 {
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+    	DAO d=new DAO();
+    	Connection cn=d.getConnection();
 	String cid=request.getParameter("cid");
 	String q="select accno,acc_type,project_bank.client_account_details.customer_id,concat(salutation,' ',concat(concat(fname,' ',mname),' ',lname)) from project_bank.client_account_details,project_bank.client_personal_details where project_bank.client_account_details.customer_id = (project_bank.client_personal_details.customer_id); ";
 	Statement ps=cn.createStatement();

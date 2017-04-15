@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.io.*,java.sql.*" %>
+    <%@page import="java.io.*,java.sql.*,p.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,8 +11,8 @@
 <%
 try
 {
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/project_bank","root","petervsock");
+	DAO d1=new DAO();
+	Connection cn=d1.getConnection();
 	String cid=request.getParameter("cid");
 	String q="select * from client_personal_details where customer_id='"+cid+"'";
 	Statement ps=cn.createStatement();
@@ -29,7 +29,7 @@ try
 	}
 	%>
 		<div style="padding: 20px;">
-        <table class="table table-bordered">
+        <table class="table">
             <thead>
                 <tr style="color: white;background-color: #5A55A3">
                     <th colspan="4"> <span class="glyphicon glyphicon-user"></span> Customer ID : <%= rs.getString(1) %></th>                    
