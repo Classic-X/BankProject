@@ -73,12 +73,9 @@
 <!--Columns Welcome-->
 <br>
  <br>
-<div class="container polaroid"  style="width:1200px;background-color: #E0E0E0 ">
+<div class="container polaroid"  style="background-color: #E0E0E0 ">
 <br>
-<div class="row content">
 
-<!--Columns 2-->
-<div class="col-md-12">
 <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:0px">
     <!-- Indicators -->
  <ol class="carousel-indicators">
@@ -92,22 +89,22 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox" style="height:450px">
       <div class="item active">
-        <img src="Images/vault.jpg" alt="Chania" width="1200" height="450">
+        <img src="Images/vault.jpg" alt="Chania" width="100%" >
       </div>
 
       <div class="item">
-        <img src="Images/ib2.jpg" alt="Chania" width="1200" height="450">
+        <img src="Images/ib2.jpg" alt="Chania" width="100%" >
       </div>
     
       <div class="item">
-        <img src="Images/family.jpg" alt="Flower" width="1200" height="450">
+        <img src="Images/family.jpg" alt="Flower" width="100%" >
       </div>
 
       <div class="item">
-        <img src="Images/atm.jpg" alt="Flower" width="1200" height="450">
+        <img src="Images/atm.jpg" alt="Flower" width="100%">
       </div>
         <div class="item">
-        <img src="Images/bank.jpg" alt="Flower" width="1200" height="450">
+        <img src="Images/bank.jpg" alt="Flower" width="100%" >
       </div>
     </div>
 
@@ -121,26 +118,24 @@
       <span class="sr-only">Next</span>
     </a>
     </div>
-  </div>
- <!--Columns 2-->   
-</div>
+    <br>  
 </div>
 
-<div class="container" style="padding-top: 150px;" id="banking">
+<div class="container" style="padding-top: 12%;" id="banking">
 
-    <div class="header polaroid" style="width: 400px;padding-top: 10px;padding-bottom: 20px;margin-left: 33%;border-radius: 5px;background-color:#52317D;color: white; "><h1 style="text-align:center" align="center">Banking</h1>
+    <div class="header polaroid" style="width: 35%;padding-top: 10px;padding-bottom: 20px;margin-left: 33%;border-radius: 5px;background-color:#52317D;color: white; "><h1 style="text-align:center" align="center">Banking</h1>
   
   </div>
-<div id="bank" style="padding-top:50px;margin-left:13%">
+<div id="bank" style="padding-top:6%;margin-left:13%">
     
   <div class="row" align=center style="">
     <div class="col-md-5 bank polaroid" style="margin-right: 10px;background-color: #E0E0E0 ">
-      <div><img src="Images/create.png" width="120" height="120"></div>
+      <div><img src="Images/create.png" width="34%" height="34%"></div>
       </br>
       <span class="c" ><a class="btn btn-primary" style="font-size:22px" href="verify.html"  role="button">Create An Account</a></span>
     </div>
     <div class="col-md-5 bank polaroid" style="margin-left: 10px;background-color: #E0E0E0 ">
-      <div><img src="Images/inbank2.png" width="120" height="120"></div>
+      <div><img src="Images/inbank2.png" width="34%" height="34%"></div>
       </br>
       <span class="c"><a class="btn btn-primary" style="font-size:22px" href="netbank.html" role="button">Internet Banking</a></span>
     </div>
@@ -150,11 +145,11 @@
 <br><br>
 
 
-<div class="container"  id="service" style="padding-top:150px">
-  <div class="header polaroid" style="width: 400px;padding-top: 10px;padding-bottom: 20px;margin-left: 33%;border-radius: 5px;background-color:#52317D;color: white; ">
+<div class="container"  id="service" style="padding-top:13%">
+  <div class="header polaroid" style="width: 37%;padding-top: 10px;padding-bottom: 20px;margin-left: 33%;border-radius: 5px;background-color:#52317D;color: white; ">
     <h1 style="text-align:center" align="center">Our Services</h1>
   </div></br></br></br>
-      <div class="row content" style="margin-bottom:150px">
+      <div class="row content" style="margin-bottom:150px" >
         <div class="col-md-12">
       <div class="col-md-3 e polaroid" style="background-color: #E0E0E0 ">
         <div><img src="Images/internet.png" width="50%" height="50%"></div>
@@ -169,6 +164,7 @@
        <span class="c">Mobile Banking</span>
     </br>
       <p>Bank on the go with our Mobile Banking services. Download app or use SMS</p>
+      <br>  
       </div>
       <div class="col-md-3 e polaroid" style="background-color: #E0E0E0 ">
         <div><img src="Images/transfer.png" width="50%" height="50%"></div>
@@ -444,52 +440,40 @@
             <a href="#" id="insta"><i class="fa fa-instagram" style="font-size:36px;color: #9F5139"></i></a>
             <a href="#" id="twitter"><i class="fa fa-twitter-square" style="font-size:36px;color: #20C6E9"></i></a>
             <a href="#" id="youtube"><i class="fa fa-youtube" style="font-size:36px;color: #DF2F2F"></i></a>
-            <a href="#" id="ldn"><i class="fa fa-linkedin-square" style="font-size:36px"></i></a>
+            <a href="#" id="ldn"><i class="fa fa-linkedin-square" style="font-size:36;color: #3930E8"></i></a>
             <a href="#" id="gplus"><i class="fa fa-google-plus-circle" style="font-size:36px;color: #E32B2B"></i></a>
         </div>
 
 </div>
 <script>
-  $(document).ready(function () {
-   $(document).on("scroll", onScroll);
-   
-   //smoothscroll
-   $('a[href^="#"]').on('click', function (e) {
-       e.preventDefault();
-       $(document).off("scroll");
-       
-       $('a').each(function () {
-           $(this).removeClass('active');
-       })
-       $(this).addClass('active');
-     
-       var target = this.hash,
-           menu = target;
-       $target = $(target);
-       $('html, body').stop().animate({
-           'scrollTop': $target.offset().top+2
-       }, 500, 'swing', function () {
-           window.location.hash = target;
-           $(document).on("scroll", onScroll);
-       });
-   });
-});
+$(document).ready(function(){
+  // Add scrollspy to <body>
+  $('body').scrollspy({target: ".navbar", offset: 50});   
 
-function onScroll(event){
-   var scrollPos = $(document).scrollTop();
-   $('#myNavbar a').each(function () {
-       var currLink = $(this);
-       var refElement = $(currLink.attr("href"));
-       if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-           $('#myNavbar ul li a').removeClass("active");
-           currLink.addClass("active");
-       }
-       else{
-           currLink.removeClass("active");
-       }
-   });
-}
+  // Add smooth scrolling on all links inside the navbar
+  $("#myNavbar a").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 400, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    }  // End if
+  });
+});
 </script>
+
 <!--main-->
 </body>
 </html>

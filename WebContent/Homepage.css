@@ -1,7 +1,7 @@
   .affix {
       top: 0;
       width: 100%;
-      z-index: 100;
+      z-index: 1000;
   }
 
   .affix + .container {
@@ -162,7 +162,7 @@
 {
   border:2px solid #52317D;
   border-radius: 8px;
-  padding: 40px 20px; 
+  padding: 5% 5%; 
 }
 #myNavbar >#j >li :hover
 {
@@ -187,6 +187,6 @@ background-size:16px 16px;
 {
 	background-color: #2A9777;
 	color: #D9D9D9;
-	border-radius: 4px;
+	border-radius: 4px 4px 0px 0px;
 
 }

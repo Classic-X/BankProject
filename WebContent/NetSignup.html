@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="Homepage.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script>
   var myVar;
   function myFunction() {
@@ -27,8 +28,7 @@
   </script>
 </head>
 <style>
-div.polaroid {
-    width: 250px;
+.polaroid {   
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     border-radius: 5px;
@@ -44,17 +44,17 @@ div.polaroid {
 }
 
 .input-group {
-    width: 400px;
+    width: 80%;
     height: 45px;
 }
 .help-block
 {
-    width: 370px;
+    width: 75%;
 }
 input[type="text"],
 input[type="email"],
 input[type="password"]
-{height: 45px;
+{height: 100%;
 
 }
 .panel > .panel-heading
@@ -113,7 +113,7 @@ span > b:hover
         <div id="formpage_1" style="visibility: visible; display: block;">
         <form data-toggle="validator" role="form" id="form1" method="post">
             <div class="container" align="center">
-                <div class="polaroid" style="height: auto; width: 50%;margin-top: 30px;">
+                <div class="polaroid" style="height: auto; width: 60%;margin-top: 30px;">
                     <div align="center">
                         <div class="panel panel-primary">
                             <div class="panel-heading">Signup</div>
@@ -303,13 +303,16 @@ function global2(sr)
         
         </script>
   <script>
-  function sendotp() {        
+  function sendotp() {
+        document.getElementById("daf").innerHTML="Sending OTP..  <span class='fa fa-spinner fa-spin'></span>";        
         var xhttp;
         var cd=document.getElementById("c3").value;        
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
 				console.log("asas");
+                pagechange(1,2);
+                document.getElementById("daf").innerHTML="Retry!!";    
             }
         };
         xhttp.open("POST","SMailOTP?mail2="+cd, true);
@@ -343,7 +346,7 @@ function global2(sr)
     <form id="form2" data-toggle="validator" role="form">
         <div id="formpage_2" style="visibility: hidden; display: none;">
             <div class="container" align="center">
-                <div class="polaroid" style="height: auto; width: 700px;margin-top: 70px;">
+                <div class="polaroid" style="height: auto; width: 60%;margin-top: 70px;">
                     <div class="panel panel-primary">
                         <div class="panel-heading">Verification</div>
                         <div class="panel-body" align="center">
@@ -364,11 +367,29 @@ function global2(sr)
             </div>
         </div>
     </form>
+
+    <div id="formpage_3" style="visibility: hidden; display: none;">
+        <div class="container " align="center">
+        <div style="width:60%;margin-top: 5%;">
+        <div class="panel panel-primary">
+        <div class="panel-heading" style="color: white;background-color: #1E760A;">Success</div>
+        <div class="panel-body">
+            <p style="font-size: 50px;">NetBanking Activation Successful!!!</p>
+            <br>    
+            <h3 id="act1"></h3>
+            </div>
+        </div>
+            
+        </div>
+            
+        </div>
+    </div>
     <script>
     function checkotp() {        
         var xhttp;
         var d=document.getElementById("OTP").value;
         var d1=document.getElementById("c3").value;
+        var cs=document.getElementById("c1").value;
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -376,6 +397,8 @@ function global2(sr)
   				if(x2=='1')
   					{
   					insertdbase();
+                    document.getElementById("act1").innerHTML="For Account no. "+cs+" !!! <br>You will redirected to login page within 5 seconds<META HTTP-EQUIV='refresh' CONTENT='5;URL=netbank.html'>";
+                    pagechange(2,3);
   					}
   				else if(x2=='2')
   					{
@@ -416,7 +439,7 @@ $('#form1').validator().on('submit', function (e) {
     alert("Please Check the fields!!");
   } else {
     sendotp();
- pagechange(1,2);
+ 
  return false;
   }
  

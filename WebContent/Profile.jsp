@@ -236,7 +236,8 @@
                 <a class="navbar-brand" href="#">WebSiteName</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>                
+                <li class=""><a href="Homepage.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>                    
             </ul>
             <div style="padding-right: 20px;">
                 <ul class="nav navbar-nav navbar-right">
