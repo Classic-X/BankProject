@@ -13,17 +13,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <link rel="stylesheet" href="Homepage.css">
     <title>Insert title here</title>
-    <script>
-    var myVar;
-    function myFunction() {
-      myVar = setTimeout(showPage, 500);
-    }
-    
-    function showPage() {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("myDiv").style.display = "block";
-  }
-  </script>
+   
 </head>
 <style type="text/css">
 header {
@@ -81,14 +71,9 @@ function fun(x) {
 }
 </script>
 
-<body onload="myFunction();">
-<div id="loader"></div>
-<!--loader  -->
+<body>
 
-<!--main-->
-<div style="display:none;" id="myDiv" class="animate-bottom">
-    <div class="container-fluid" style="background-color:#e6e6e6;color:black;height:70px;">
-        <h1>Bootstrap Affix Example</h1></div>
+    <div class="container-fluid" align="center" style="width: 100%;background-color: #336699;"><img src="Head.png" width="50%" ></div>
     <!--NavBar-->
     <nav class="navbar navbar-inverse" style="background-color:#52317D;margin-bottom:5px;border-radius: 0px;" data-spy="affix" data-offset-top="87">
         <div class="container">
@@ -160,11 +145,14 @@ function fun(x) {
             "<div class='panel panel-primary'><div class='panel-heading'>Instructions</div><div class='panel-body' ><div class='alert alert-info' align='left' style='margin-bottom: 0px;'>" +
             "<strong>Info!</strong> OTP send to your Email.</div></div></div><form action='CheckOTP' method='post'><div class='panel panel-primary'><div class='panel-heading'>Verification Details</div>" +
             "<div class='panel-body' ><div class='row'><div class='form-group'><label for='a' class='control-label' >OTP*</label><input type='text' id='i' name='OTP'  class='form-control' pattern='[0-9]{6}' style='width:20%' required>" +
-            "<br><button class='btn btn-success' type='submit'> <span class='glyphicon glyphicon-ok'>Confirm </span> </button></div></div></div></div></form></div></div></div></div>";
+            "<br><button class='btn btn-success' id='nmbtn' type='submit' onsubmit='spinner();'> <span class='glyphicon glyphicon-ok'>Confirm </span> </button></div></div></div></div></form></div></div></div></div>";
+    }
+    function spinner()
+    {
+        document.getElementById("nmbtn").innerHTML='<span style="font-size:24px;">Loading...<i class="fa fa-cog fa-spin" style="color:red"></i></span>';
     }
     </script>
-    </div>
-    </div>
+   
 </body>
 
 </html>

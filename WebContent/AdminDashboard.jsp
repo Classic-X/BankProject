@@ -70,14 +70,18 @@ div.tab button.active {
     border-left: none;
     height: 500px;
 }
+
 </style>
 <body onload="call();custinfo();custinfo2();">
+<header>
+<div class="container-fluid" align="center" style="width: 100%;background-color: #336699;padding-bottom: 1%"><img src="Head.png" width="20%"></div>
+</header>
 <div class="">
 <form action="Adlogout" method="post">
 <div class="w3-bar w3-blue">
-  <a href="#" class="w3-bar-item w3-button">Home</a> 
-    <h4>Hello <%=admin %></h4> 
-    <button class="btn btn-danger navbar-btn log2"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
+  <a href="#" class="w3-bar-item w3-button" >Home</a> 
+    <span class="w3-bar-item " style="width: 82%">Hello <%=admin %> </span>
+    <button class="w3-button w3-red log2" style="left: 90%"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
 </div>
 </form>
 

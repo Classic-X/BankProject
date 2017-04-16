@@ -60,7 +60,7 @@ public class Delete extends HttpServlet {
 				message+="Thank You!";
 				String subject="Citizen's Bank of India(Account Deletion!)";
 				String to=email;
-				//SendMail.send(to,subject,message);
+				SendMail.send(to,subject,message);
 				RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.jsp");
 				request.setAttribute("message", m);
 				rd.forward(request, response);

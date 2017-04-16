@@ -20,6 +20,11 @@ session=request.getSession(false);
 String s=(String)session.getAttribute("mail");
 %>
 <style type="text/css">
+.polaroid {
+  width: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);  
+  
+}
 	header
 	{
 		text-align: center ;
@@ -60,10 +65,10 @@ String s=(String)session.getAttribute("mail");
 </style>
 
 
-<body >
+<body style="background: linear-gradient(to bottom, rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%);">
 <form data-toggle="validator"  role="form" method="POST" name="accreate" action="Register">
 <header style="font-weight:bold;">
-   <h1 id="top"><b>Bank of CET</b><small>Cetians Trust</small></h1>
+   <div class="container-fluid" align="center" style="width: 100%;padding-bottom: 1%"><img src="HeadA.png" width="30%"></div>
 </header>
 
 
@@ -82,7 +87,7 @@ String s=(String)session.getAttribute("mail");
 
 <div id="home" class="tab-pane fade in active">
 <div align="center">
-	<div class="panel panel-primary">
+	<div class="panel panel-primary polaroid">
  	<div class="panel-heading">Instructions</div>
  	<div class="panel-body" >
  	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong> The (*) marked fields are mandatory.</div>
@@ -94,7 +99,7 @@ String s=(String)session.getAttribute("mail");
 
 
  
- <div class="panel panel-primary">
+ <div class="panel panel-primary polaroid">
  <div class="panel-heading">Personal Details</div>
  <div class="panel-body" >
   			<div class="row">
@@ -210,7 +215,7 @@ String s=(String)session.getAttribute("mail");
 
 <!--Address -->
 
-<div class="panel panel-primary">
+<div class="panel panel-primary polaroid">
 <div class="panel-heading">Permanent Address</div>
 <div class="panel-body" style="padding-right: 10%;padding-left: 10%;">
 		<div class="row">	
@@ -317,7 +322,7 @@ String s=(String)session.getAttribute("mail");
 
 <!--Terms/conditions-->
 
-	<div class="panel panel-primary">
+	<div class="panel panel-primary polaroid">
 	<div class="panel-heading">Confirm</div>
 	<div class="panel-body">
 			<div class="row">
@@ -356,7 +361,7 @@ String s=(String)session.getAttribute("mail");
 <!--Start of tab2-->
 <div id="ident" class="tab-pane fade">
 	<div align="center">
-	<div class="panel panel-primary">
+	<div class="panel panel-primary polaroid">
 	<div class="panel-heading">Image upload section</div>
 	<div class="panel-body" style="padding-left: 10%;padding-right: 10%;">
 
@@ -377,7 +382,7 @@ String s=(String)session.getAttribute("mail");
 
 	</div></div>
 
-	<div class="panel panel-primary">
+	<div class="panel panel-primary polaroid">
 	<div class="panel-heading">Account Details</div>
 	<div class="panel-body" style="padding-left: 10%;padding-right: 10%;">
 			<div class="row">
@@ -417,7 +422,7 @@ String s=(String)session.getAttribute("mail");
 
 
 
-	<div class="panel panel-primary">
+	<div class="panel panel-primary polaroid">
 	<div class="panel-heading">Required Documents</div>
 	<div class="panel-body" style="padding-left: 10%;padding-right: 10%;">
 	<div class="alert alert-info" align="left" style="margin-bottom: 0px;"><strong>Info!</strong>Both of the documents are required.</div>
@@ -469,7 +474,7 @@ String s=(String)session.getAttribute("mail");
  	</div>
 	</div>
 
-	<div class="panel panel-primary">
+	<div class="panel panel-primary polaroid">
 	<div class="panel-heading">Confirm</div>
 	<div class="panel-body" style="padding-left: 10%;padding-right: 10%">
 			<div class="row">
@@ -501,7 +506,7 @@ String s=(String)session.getAttribute("mail");
 <!--Start of tabfinal-->
 <div id="finaltab" class="tab-pane">
     <div align="center">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary polaroid">
             <div class="panel-heading">Confirm Details</div>
             <div class="panel-body" style="padding-left: 10%;padding-right: 10%;">
             <div id="messages" class="hide" role="alert">
