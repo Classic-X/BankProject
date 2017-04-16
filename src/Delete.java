@@ -54,12 +54,11 @@ public class Delete extends HttpServlet {
 			}
 			if(a1>0)
 			{
-				String m="Account with Account Number "+accno+" deleted Successfully";
-				pw.print("<br><form action='cheque' method='post'><input type='hidden' value='"+bal+"' name='balance'><input type='submit' value='Print Balance Cheque'></form>");
+				String m="Account with Account Number "+accno+" deleted Successfully.Collect cheque from printer.";
 				String message="Your Account with Account no. "+accno+" has been deleted.";
 				if(c==0) message+="\nIt was nice having you as our Customer. You had been a valuable Customer. We will be happy to provide you our services in near future.";
 				message+="Thank You!";
-				String subject="Bank Account Deletion!";
+				String subject="Citizen's Bank of India(Account Deletion!)";
 				String to=email;
 				//SendMail.send(to,subject,message);
 				RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.jsp");

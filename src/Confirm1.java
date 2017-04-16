@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -123,8 +124,10 @@ public class Confirm1 extends HttpServlet {
 					String message="Congratulations!! Your Account has been Created. Welcome to our Family. Happy Banking.\n Your Customer id is "+custid+" and your Account no. is "+accno+".\nThank You!";
 					String subject="Bank Account Creation!";
 					String to=email;
-					SendMail.send(to,subject,message);
-					request.getRequestDispatcher("AdminDashboard.jsp");
+					//SendMail.send(to,subject,message);
+					RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.jsp");
+					request.setAttribute("message", m);
+					rd.forward(request, response);
 		        }
 		    }
 		catch(Exception e){pw.print(e); e.printStackTrace();}

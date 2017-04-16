@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -80,14 +81,14 @@ public class Confirm11 extends HttpServlet {
 			r="delete from temp_regd where mail='"+email+"';";
 			smt.executeUpdate(r);
 			if(a12>0) 
-				{pw.print("Account created Successfully. Account id="+accno+". Customer id="+custid);
+				{String m="Account created Successfully. Account id="+accno+". Customer id="+custid;
 			String message="Hello "+custid+"\nCongratulations!! Your new Account has been Created.  Happy Banking.\nYour Account no. is "+accno+".\nThank You!";
 					String subject="Bank Account Creation!";
 					String to=email;
-					SendMail.send(to,subject,message);
-
-
-
+					//SendMail.send(to,subject,message);
+					RequestDispatcher rd=request.getRequestDispatcher("AdminDashboard.jsp");
+					request.setAttribute("message", m);
+					rd.forward(request, response);
 		}
 		}
 		catch(Exception e){pw.print(e); e.printStackTrace();}
